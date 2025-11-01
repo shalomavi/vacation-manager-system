@@ -1,0 +1,31 @@
+{
+  "name": "travelfactory-vacation-manager",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend for managing vacation requests.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.0",
+    "pg": "^8.7.1",
+    "supertest": "^7.1.4"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.7"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
