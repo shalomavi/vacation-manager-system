@@ -19,8 +19,8 @@ Before running the project locally, make sure you have installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
+git clone https://github.com/shalomavi/vacation-manager-system.git
+cd vacation-manager-system
 ```
 
 ---
