@@ -67,7 +67,7 @@ By default, the backend server should run on `http://localhost:3000`.
 
 ---
 
-### 6. Setup Frontend (Vue)
+### 5. Setup Frontend (Vue)
 
 In another terminal, run:
 ```bash
@@ -77,7 +77,7 @@ npm install
 
 ---
 
-### 7. Start the Frontend Server
+### 6. Start the Frontend Server
 
 ```bash
 npm run dev
@@ -87,7 +87,7 @@ By default, Vue will run on `http://localhost:5173`.
 
 ---
 
-### 8. Access the Application
+### 7. Access the Application
 
 * Frontend: `http://localhost:5173`
 * Backend API: `http://localhost:3000/api`
