@@ -3,13 +3,10 @@ import { createRequest, getAllRequests, updateRequestStatus } from '../controlle
 
 const router = express.Router();
 
-// POST /api/requests
 router.post('/', createRequest);
 
-// GET /api/requests  (supports ?userId= & ?status=)
 router.get('/', getAllRequests);
 
-// PATCH /api/requests/:id
 router.patch('/:id', updateRequestStatus);
 
 export default router;

@@ -3,7 +3,6 @@ import db from '../db/knex.js'
 
 const router = express.Router()
 
-// POST /api/login (Hybrid Login/Signup Endpoint)
 router.post('/', async (req, res) => {
   const { name, password, role } = req.body
 
@@ -11,7 +10,6 @@ router.post('/', async (req, res) => {
     let user = await db('users').where({ name }).first()
 
     if (!user) {
-      // AWAIT the creation of the user and capture the result
       const [newUserRow] = await db('users').insert({ name, password, role }).returning('*')
       user = newUserRow;
       console.log('User created:', user.name);
@@ -23,7 +21,7 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
-    const token = `fake-jwt-token-${user.id}`
+    // const token = `fake-jwt-token-${user.id}`
 
     res.json({
       user: {
@@ -31,7 +29,7 @@ router.post('/', async (req, res) => {
         name: user.name,
         role: user.role,
       },
-      token,
+      // token,
     })
   } catch (error) {
     console.error('Login error:', error)

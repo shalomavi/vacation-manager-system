@@ -5,7 +5,7 @@
     </div>
 
     <h1>Vacation Request Form</h1>
-    <RequestForm @submit="handleSubmit" />
+    <RequestForm @submit="handleSubmit" @request-submitted="handleRequestSubmitted" />
     <h2>Your Submitted Requests</h2>
     <RequestList :requests="submittedRequests" />
   </div>
@@ -14,7 +14,7 @@
 <script>
 import RequestForm from './RequestForm.vue'
 import RequestList from './RequestList.vue'
-import api from '../services/api' // Make sure you import your API service
+import api from '../services/api'
 import { useUserStore } from '@/stores/user'
 
 export default {
@@ -28,14 +28,12 @@ export default {
       submittedRequests: [],
     }
   },
-  // When the component loads, fetch the data from the backend
   async created() {
     await this.fetchRequests()
   },
   methods: {
     async fetchRequests() {
       try {
-        // 1. Access the store safely within a method/hook
         const userStore = useUserStore(); 
         const userId = userStore.user.id; 
 
@@ -59,6 +57,9 @@ export default {
     async handleSubmit() {
       await this.fetchRequests()
     },
+    async handleRequestSubmitted() {
+      await this.fetchRequests();
+    }
   },
 }
 </script>

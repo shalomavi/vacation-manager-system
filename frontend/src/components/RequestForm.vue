@@ -34,7 +34,6 @@ export default {
   },
   computed: {
     user() {
-      console.log(useUserStore().user);
       return useUserStore().user;
     }
 
@@ -49,11 +48,9 @@ export default {
           end_date: this.endDate,
           reason: this.reason,
         };
-        console.log('Submitting request:', requestData);
         const response = await submitVacationRequest(requestData);
-        console.log('Request submitted:', response);
-
         this.resetForm();
+        this.$emit('request-submitted', response);
       } catch (error) {
         console.error('Error submitting request:', error.message);
       }
@@ -100,7 +97,6 @@ export default {
 .request-form input,
 .request-form textarea {
   padding: 8px;
-  /* margin-bottom: 15px; */
   border: 1px solid #ccc;
   border-radius: 4px;
 }

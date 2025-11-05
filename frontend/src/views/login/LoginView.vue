@@ -12,44 +12,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { useUserStore } from '@/stores/user'
 
-const name = ref('')
-const password = ref('')
-const error = ref('')
-const role = ref('requester')
-const router = useRouter()
-const userStore = useUserStore()
+  const name = ref('')
+  const password = ref('')
+  const error = ref('')
+  const role = ref('requester')
+  const router = useRouter()
+  const userStore = useUserStore()
 
-async function handleLogin() {
-  try {
-    const response = await fetch('http://localhost:3000/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.value, password: password.value, role: role.value}),
-    })
+  async function handleLogin() {
+    try {
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.value, password: password.value, role: role.value}),
+      })
 
-    console.log('RESPONSE:', response)
-    if (!response.ok) {
-   
-      throw new Error('Invalid credentials')
+      if (!response.ok) {   
+        throw new Error('Invalid credentials')
+      }
+
+      const data = await response.json()
+      userStore.setUser(data.user)
+      // localStorage.setItem('token', data.token)
+      localStorage.setItem('user', JSON.stringify(data.user))
+      if (data.user.role === 'validator') {
+        router.push('/validator')
+        return
+      }
+      router.push('/requester')
+    } catch (err) {
+      error.value = err.message
     }
-
-    const data = await response.json()
-    userStore.setUser(data.user)
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('user', JSON.stringify(data.user))
-    if (data.user.role === 'validator') {
-      router.push('/validator')
-      return
-    }
-    router.push('/requester')
-  } catch (err) {
-    error.value = err.message
   }
-}
 
 </script>
 

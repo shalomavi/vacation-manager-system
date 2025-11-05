@@ -14,7 +14,6 @@ export default class VacationRequest {
       status: payload.status || 'pending',
       comments: payload.comments || '',
     }
-    // returns row(s) — PostgreSQL supports returning('*')
     const [row] = await db('vacation_requests').insert(insert).returning('*')
     return new VacationRequest(row)
   }
@@ -34,17 +33,15 @@ export default class VacationRequest {
 
   static async findAllWithUserNames(opts = {}) {
     let q = db('vacation_requests')
-      .select('vacation_requests.*', 'users.name as user_name') // Select all request fields AND the user's name
-      .join('users', 'vacation_requests.user_id', 'users.id'); // Link the tables on their IDs
+      .select('vacation_requests.*', 'users.name as user_name')
+      .join('users', 'vacation_requests.user_id', 'users.id');
 
-    // Apply standard options
     if (opts.where) q = q.where(opts.where);
-    // Note: the orderBy here expects array format: ['column', 'direction']
+    
     if (opts.orderBy) q = q.orderBy(...opts.orderBy);
 
     const rows = await q;
     
-    // The returned objects will now have a 'user_name' property thanks to the join
     return rows.map(r => new VacationRequest(r))
   }
 
@@ -69,11 +66,9 @@ export class User {
   }
 
   static async create(payload) {
-    // In a real app, hash the password here:
-    // const hashedPassword = await bcrypt.hash(payload.password, 10);
     const insert = {
       name: payload.name,
-      password: payload.password, // Store hashedPassword here
+      password: payload.password,
       role: payload.role || 'requester',
     }
     const [row] = await db('users').insert(insert).returning('*')

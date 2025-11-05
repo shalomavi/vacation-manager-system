@@ -36,7 +36,6 @@ export const getAllRequests = async (req, res) => {
   }
 };
 
-// Approve or reject a vacation request
 export const updateRequestStatus = async (req, res) => {
   const { id } = req.params;
   const { status, comments } = req.body;

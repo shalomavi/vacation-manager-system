@@ -1,4 +1,3 @@
-// src/stores/user.js
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import api from '@/services/api'
@@ -11,7 +10,7 @@ export const useUserStore = defineStore('user', () => {
       const { data } = await api.post('/login', { email, password })
       user.value = data.user
       localStorage.setItem('user', JSON.stringify(data.user))
-      localStorage.setItem('token', data.token)
+      // localStorage.setItem('token', data.token)
     } catch (err) {
       throw new Error('Login failed: ' + err.message)
     }
@@ -20,7 +19,7 @@ export const useUserStore = defineStore('user', () => {
   function logout() {
     user.value = null
     localStorage.removeItem('user')
-    localStorage.removeItem('token')
+    // localStorage.removeItem('token')
   }
 
   function setUser(userInfo) {

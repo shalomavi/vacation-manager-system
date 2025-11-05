@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import RequesterView from '../views/requester/RequesterView.vue'
 import ValidatorView from '../views/validator/ValidatorView.vue'
 import LoginView from '../views/login/LoginView.vue'
-import { useUserStore } from '@/stores/user'  // import your Pinia store
+import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,13 +17,13 @@ const router = createRouter({
       path: '/requester',
       name: 'requester',
       component: RequesterView,
-      meta: { requiresAuth: true }, // protected route
+      meta: { requiresAuth: true },
     },
     {
       path: '/validator',
       name: 'validator',
       component: ValidatorView,
-      meta: { requiresAuth: true }, // protected route
+      meta: { requiresAuth: true },
     },
     {
       path: '/login',

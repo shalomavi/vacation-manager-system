@@ -11,11 +11,13 @@
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user';
 export default {
   name: 'HomeView',
   methods: {
     handleLogout() {
-      localStorage.removeItem('user');
+      const userStore = useUserStore()
+      userStore.logout()
       this.$router.push('/login');
     },
   },
