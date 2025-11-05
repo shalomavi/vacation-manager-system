@@ -18,8 +18,6 @@ export async function up (knex) {
     t.foreign('user_id').references('users.id').onDelete('CASCADE')
   })
 
-  // Add a DB-level check that end_date is not before start_date (Postgres)
-  // For databases that don't support raw check easily, you can skip this.
   await knex.raw(`
     ALTER TABLE vacation_requests
     ADD CONSTRAINT chk_dates CHECK (end_date >= start_date)

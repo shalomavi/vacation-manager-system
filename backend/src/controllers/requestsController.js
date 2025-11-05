@@ -19,7 +19,6 @@ export const createRequest = async (req, res) => {
   }
 };
 
-// Get all vacation requests (supports optional ?userId=&status=)
 export const getAllRequests = async (req, res) => {
   try {
     const { userId, status } = req.query;
