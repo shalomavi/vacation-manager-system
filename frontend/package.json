@@ -31,6 +31,7 @@
     "eslint": "^9.37.0",
     "eslint-plugin-playwright": "^2.2.2",
     "eslint-plugin-vue": "~10.5.0",
+    "flush-promises": "^1.0.2",
     "globals": "^16.4.0",
     "jsdom": "^27.0.1",
     "prettier": "3.6.2",

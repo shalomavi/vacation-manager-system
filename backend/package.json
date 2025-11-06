@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+,
     "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.js"
   },
   "dependencies": {
@@ -21,9 +22,6 @@
   "devDependencies": {
     "jest": "^27.0.6",
     "nodemon": "^2.0.7"
-  },
-  "jest": {
-    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",

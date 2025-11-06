@@ -1,6 +1,4 @@
 import VacationRequest from '../models/requests.model.js';
-
-// Create a new vacation request
 export const createRequest = async (req, res) => {
   const { user_id, start_date, end_date, reason } = req.body;
   try {

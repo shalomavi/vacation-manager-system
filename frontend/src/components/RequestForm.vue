@@ -4,15 +4,15 @@
     <form @submit.prevent="submitRequest">
       <div class="form-group">
         <label for="start-date">Start Date:</label>
-        <input type="date" v-model="startDate" required />
+        <input type="date" name="startDate" v-model="startDate" required />
       </div>
       <div class="form-group">
         <label for="end-date">End Date:</label>
-        <input type="date" v-model="endDate" required />
+        <input type="date" name="endDate" v-model="endDate" required />
       </div>
       <div class="form-group">
         <label for="reason">Reason:</label>
-        <textarea v-model="reason"></textarea>
+        <textarea name="reason" v-model="reason"></textarea>
       </div>
       <button type="submit">Submit Request</button>
     </form>

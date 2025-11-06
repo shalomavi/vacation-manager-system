@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from './src/index'; // Adjust the path as necessary
+import app from '../src/index.js';
 
 describe('Vacation Requests API', () => {
   it('should create a new vacation request', async () => {
@@ -14,7 +14,7 @@ describe('Vacation Requests API', () => {
     
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('id');
-    expect(response.body).toHaveProperty('status', 'Pending');
+    expect(response.body).toHaveProperty('status', 'pending');
   });
 
   it('should retrieve all vacation requests', async () => {
@@ -27,19 +27,19 @@ describe('Vacation Requests API', () => {
 
   it('should approve a vacation request', async () => {
     const response = await request(app)
-      .put('/api/requests/1/approve')
-      .send({ comments: 'Approved for family vacation' });
+      .patch('/api/requests/1');
+      .send({ status: 'approved', comments: 'Approved for family vacation' });
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('status', 'Approved');
+    expect(response.body).toHaveProperty('status', 'approved');
   });
 
   it('should reject a vacation request', async () => {
     const response = await request(app)
-      .put('/api/requests/2/reject')
-      .send({ comments: 'Not enough staff coverage' });
+      .patch('/api/requests/2')
+      .send({ status: 'rejected',comments: 'Not enough staff coverage' });
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('status', 'Rejected');
+    expect(response.body).toHaveProperty('status', 'rejected');
   });
 });
