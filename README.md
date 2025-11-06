@@ -27,15 +27,16 @@ cd vacation-manager-system
 
 ### 2. Setup PostgreSQL Database
 
-
+setup postgresql database and create a database named `vacation_db`
+use  your username and password credentials
 
 Update your backend `.env` file with database credentials:
 
 ```
 DATABASE_URL=postgres://travelfactory:travelfactory@127.0.0.1:5432/vacation_manager
 DB_HOST=127.0.0.1
-DB_USER=postgres
-DB_PASS=shalom
+DB_USER=your_username
+DB_PASS=your_password
 DB_NAME=vacation_db
 PORT=3000
 NODE_ENV=development
@@ -50,8 +51,8 @@ run the following commands:
 
 ```bash
 cd backend
-npm run migrate
 npm install
+npm run migrate
 ```
 
 
@@ -93,6 +94,18 @@ By default, Vue will run on `http://localhost:5173`.
 * Backend API: `http://localhost:3000/api`
 
 ---
+
+### 8. Running Tests
+
+```bash
+cd backend
+npm run test
+```
+
+```bash
+cd frontend
+npm run test:unit
+```
 
 ## Notes
 
